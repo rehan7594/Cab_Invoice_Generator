@@ -18,8 +18,8 @@ public class CabServiceTest {
 	@Test
 	public void testCalculateFare_Should_Return_Min_Fare() {
 
-		final double distance =0.5;
-		final int minute=5;
+		final double distance =0.1;
+		final int minute=1;
 		double totalFare=cabService.calculateFare(distance,minute);
 		assertEquals(5, totalFare,0);
 	}
@@ -35,11 +35,21 @@ public class CabServiceTest {
 	@Test
 	public void testCalculateTotalFare_Should_ReturnTotalFare_forMultipleRides() {	
 
-		final double distance =2.3;
-		final int minute=7;
-		final int numOfRides=3;
-		double totalFare=cabService.calculateFare(distance,minute);
-		double totalFareForMultipleRide=cabService.totalFareForMultipleRide(totalFare,numOfRides);
-		assertEquals(90, totalFareForMultipleRide,0);
+		Ride [] rides= {new Ride(2.0,5),
+				new Ride(0.1,1)
+		};
+		double Fare=cabService.calculateFare(rides);
+		assertEquals(30.0, Fare , 0);
 	}
+
+	@Test
+	public void test_shouldReturn_TotalFare_averageFarePerRide_and_numOfRides() {	
+		Ride [] rides= {new Ride(2.0,5),
+				new Ride(0.1,1)
+		};
+
+		InvoiceSummary invoiceSummary = cabService.calculateTotalFare(rides);
+		InvoiceSummary expected = new InvoiceSummary(2, 30, 15);
+		assertEquals(expected, invoiceSummary);	
+	}	
 }
