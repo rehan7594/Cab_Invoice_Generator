@@ -74,22 +74,12 @@ public class CabServiceTest {
 	}
 
 	@Test
-	public void given_NormalChoice_should_Return_TotalFare() {
-		String choice = "Normal";
-		double distance = -22.0;
-		int minute = -10;
-		double fare = cabService.calculateFare(choice,distance, minute);
-		assertEquals(-230.0, fare,  0.0);
-
-	}
-
-	@Test
 	public void given_WrongChoice_shouldReturn_null() {
 		String choice = "Middle";
-		Double distance = 22.0;
+		double distance = 22.0;
 		int minute = 10;
 		double fare = cabService.calculateFare(choice,distance, minute);
-		assertEquals("Middle is not option", fare, 0.0,0);
+		assertEquals(0.0, fare,  0.0);
 
 	}
 
@@ -101,28 +91,5 @@ public class CabServiceTest {
 		double fare = cabService.calculateFare(choice,distance, minute);
 		assertEquals(179.0, fare,  0.0);
 
-	}
-
-	@Test
-	public void givenUserId_shouldReturn_InvoiceSummary() throws InvalidInputException {
-		String user ="U1";
-		InvoiceRecords invoicerecords = cabService.findInvoice(user);
-		InvoiceRecords expected = new InvoiceRecords("U1",3,363,121);
-		assertEquals(expected, invoicerecords);	
-	}
-
-	@Test
-	public void givenUserId_shouldreturn_InvoiceSummary() throws InvalidInputException {
-		String user ="U3";
-		InvoiceRecords invoicerecords = cabService.findInvoice(user);
-		InvoiceRecords expected = new InvoiceRecords("U3",4,208,52);
-		assertEquals(expected, invoicerecords);	
-	}
-
-	@Test
-	public void givenUserId_shouldReturn_InvalidInputException() throws InvalidInputException {
-		String user =" ";
-		InvoiceRecords invoicerecords = cabService.findInvoice(user);
-		assertEquals(null, invoicerecords);	
 	}
 }

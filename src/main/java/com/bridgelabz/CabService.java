@@ -60,31 +60,6 @@ public class CabService {
 		}
 
 		//double totalfare = (distance * MIN_COST_PER_KM) + (minute * MIN_COST_PER_MINUTE);
-		return totalfare;
-	}
-
-
-	public InvoiceRecords findInvoice(String userId) throws InvalidInputException {
-		try {
-			List<InvoiceRecords> list = new ArrayList<InvoiceRecords>();
-			list.add(new InvoiceRecords("U1",3,363,121));
-			list.add(new InvoiceRecords("U2",2,340,170));
-			list.add(new InvoiceRecords("U3",4,208,52));
-			list.add(new InvoiceRecords("U4",8,480,60));
-
-			InvoiceRecords user = null;
-			for (int i = 0; i < list.size(); i++) {
-				if (userId.equals(list.get(i).getUserId())) {
-					user = list.get(i);
-					user.getNumofRides();
-					user.getTotalFare();
-					user.getAverageFare();
-					break;
-				} 
-			}
-			return user;
-		}catch (NullPointerException ae ) {
-			throw new InvalidInputException("Invalid Input!No Records Found");
-		}
+		return 0;
 	}
 }
